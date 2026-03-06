@@ -1,0 +1,138 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║              DIAGRAMA DE CLASES UML - LISTA DOBLEMENTE ENLAZADA       ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+
+┌─────────────────────────────────────┐
+│           <<class>>                 │
+│             Nodo                    │
+├─────────────────────────────────────┤
+│ + Dato : int                        │
+│ + Siguiente : Nodo                  │
+│ + Anterior : Nodo                   │
+├─────────────────────────────────────┤
+│ + Nodo(dato: int)                   │
+└─────────────────────────────────────┘
+              ▲
+              │ contiene
+              │ 0..*
+              │
+┌─────────────────────────────────────┐
+│           <<class>>                 │
+│          ListaDoble                 │
+├─────────────────────────────────────┤
+│ - cabeza : Nodo                     │
+│ - cola : Nodo                       │
+│ - tamanio : int                     │
+├─────────────────────────────────────┤
+│ + ListaDoble()                      │
+│ + InsertarAlInicio(dato: int): void │
+│ + InsertarAlFinal(dato: int): void  │
+│ + RecorrerAdelante(): void          │
+│ + RecorrerAtras(): void             │
+│ + MostrarTamanio(): void            │
+│ + MostrarSiEstaVacia(): void        │
+│ + BuscarPorValor(valor: int): void  │
+│ + BuscarPorIndice(indice: int): void│
+│ + BorrarElemento(valor: int): void  │
+└─────────────────────────────────────┘
+              ▲
+              │ usa
+              │
+┌─────────────────────────────────────┐
+│           <<class>>                 │
+│            Program                  │
+├─────────────────────────────────────┤
+│                                     │
+├─────────────────────────────────────┤
+│ + Main(args: string[]): void        │
+└─────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════
+RELACIONES ENTRE CLASES:
+═══════════════════════════════════════════════════════════════════════
+
+1. COMPOSICIÓN (ListaDoble ◆─→ Nodo)
+   - ListaDoble CONTIENE nodos
+   - Multiplicidad: 1 lista puede tener 0..* nodos
+   - La lista es responsable del ciclo de vida de los nodos
+
+2. ASOCIACIÓN REFLEXIVA (Nodo ←→ Nodo)
+   - Cada nodo apunta a otro nodo (Siguiente)
+   - Cada nodo apunta a otro nodo (Anterior)
+   - Permite navegación bidireccional
+
+3. DEPENDENCIA (Program ----→ ListaDoble)
+   - Program usa ListaDoble
+   - Crea instancia y llama a sus métodos
+
+
+═══════════════════════════════════════════════════════════════════════
+DESCRIPCIÓN DE CLASES:
+═══════════════════════════════════════════════════════════════════════
+
+┌─ CLASE: Nodo ────────────────────────────────────────────────────────┐
+│                                                                       │
+│ PROPÓSITO:                                                            │
+│   Representa un elemento individual dentro de la lista               │
+│                                                                       │
+│ ATRIBUTOS:                                                            │
+│   • Dato (int): Valor almacenado en el nodo                          │
+│   • Siguiente (Nodo): Referencia al siguiente nodo                   │
+│   • Anterior (Nodo): Referencia al nodo anterior                     │
+│                                                                       │
+│ MÉTODOS:                                                              │
+│   • Constructor: Inicializa el nodo con un valor                     │
+│                                                                       │
+│ VISIBILIDAD:                                                          │
+│   • Todos los miembros son públicos (+)                              │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+
+┌─ CLASE: ListaDoble ──────────────────────────────────────────────────┐
+│                                                                       │
+│ PROPÓSITO:                                                            │
+│   Gestiona la estructura de datos completa (lista doblemente         │
+│   enlazada) y proporciona operaciones sobre ella                     │
+│                                                                       │
+│ ATRIBUTOS PRIVADOS:                                                   │
+│   • cabeza (Nodo): Referencia al primer nodo de la lista            │
+│   • cola (Nodo): Referencia al último nodo de la lista              │
+│   • tamanio (int): Cantidad de elementos en la lista                │
+│                                                                       │
+│ MÉTODOS PÚBLICOS:                                                     │
+│   • Constructor: Inicializa una lista vacía                          │
+│   • InsertarAlInicio: Agrega un elemento al principio               │
+│   • InsertarAlFinal: Agrega un elemento al final                    │
+│   • RecorrerAdelante: Muestra elementos desde cabeza a cola         │
+│   • RecorrerAtras: Muestra elementos desde cola a cabeza            │
+│   • MostrarTamanio: Muestra la cantidad de elementos                │
+│   • MostrarSiEstaVacia: Verifica si la lista está vacía             │
+│   • BuscarPorValor: Encuentra un elemento por su valor              │
+│   • BuscarPorIndice: Encuentra un elemento por su posición          │
+│   • BorrarElemento: Elimina un elemento de la lista                 │
+│                                                                       │
+│ ENCAPSULAMIENTO:                                                      │
+│   • Atributos privados (-): cabeza, cola, tamanio                   │
+│   • Métodos públicos (+): Todas las operaciones                      │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+
+┌─ CLASE: Program ─────────────────────────────────────────────────────┐
+│                                                                       │
+│ PROPÓSITO:                                                            │
+│   Punto de entrada del programa. Maneja la interacción con           │
+│   el usuario a través de un menú de opciones                         │
+│                                                                       │
+│ MÉTODOS:                                                              │
+│   • Main: Método principal que ejecuta el programa                   │
+│     - Crea instancia de ListaDoble                                   │
+│     - Muestra menú de opciones                                       │
+│     - Lee entrada del usuario                                        │
+│     - Ejecuta operaciones según la opción seleccionada              │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
